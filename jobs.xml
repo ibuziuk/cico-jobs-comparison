@@ -310,7 +310,9 @@ else
     PATH=$PATH:~/.local/bin/
     CONTEXT=$(echo $SAAS_GIT | sed 's/.*://')
     SAAS_GIT=$(echo $SAAS_GIT | sed 's/:.*//')
-    SAAS_SERVICE_NAME=$GIT_REPO
+    if [[ -z &quot;$SAAS_SERVICE_NAME&quot; || &quot;$SAAS_SERVICE_NAME&quot; == &quot;none&quot; ]]; then
+        SAAS_SERVICE_NAME=$GIT_REPO
+    fi
     if [ &quot;$SUBDIR&quot; != &quot;&quot; ]; then
         SAAS_SERVICE_NAME=$SAAS_SERVICE_NAME&quot;-&quot;$SUBDIR
     fi
@@ -879,7 +881,9 @@ else
     PATH=$PATH:~/.local/bin/
     CONTEXT=$(echo $SAAS_GIT | sed 's/.*://')
     SAAS_GIT=$(echo $SAAS_GIT | sed 's/:.*//')
-    SAAS_SERVICE_NAME=$GIT_REPO
+    if [[ -z &quot;$SAAS_SERVICE_NAME&quot; || &quot;$SAAS_SERVICE_NAME&quot; == &quot;none&quot; ]]; then
+        SAAS_SERVICE_NAME=$GIT_REPO
+    fi
     if [ &quot;$SUBDIR&quot; != &quot;&quot; ]; then
         SAAS_SERVICE_NAME=$SAAS_SERVICE_NAME&quot;-&quot;$SUBDIR
     fi
@@ -1049,7 +1053,9 @@ else
     PATH=$PATH:~/.local/bin/
     CONTEXT=$(echo $SAAS_GIT | sed 's/.*://')
     SAAS_GIT=$(echo $SAAS_GIT | sed 's/:.*//')
-    SAAS_SERVICE_NAME=$GIT_REPO
+    if [[ -z &quot;$SAAS_SERVICE_NAME&quot; || &quot;$SAAS_SERVICE_NAME&quot; == &quot;none&quot; ]]; then
+        SAAS_SERVICE_NAME=$GIT_REPO
+    fi
     if [ &quot;$SUBDIR&quot; != &quot;&quot; ]; then
         SAAS_SERVICE_NAME=$SAAS_SERVICE_NAME&quot;-&quot;$SUBDIR
     fi
@@ -1219,7 +1225,9 @@ else
     PATH=$PATH:~/.local/bin/
     CONTEXT=$(echo $SAAS_GIT | sed 's/.*://')
     SAAS_GIT=$(echo $SAAS_GIT | sed 's/:.*//')
-    SAAS_SERVICE_NAME=$GIT_REPO
+    if [[ -z &quot;$SAAS_SERVICE_NAME&quot; || &quot;$SAAS_SERVICE_NAME&quot; == &quot;none&quot; ]]; then
+        SAAS_SERVICE_NAME=$GIT_REPO
+    fi
     if [ &quot;$SUBDIR&quot; != &quot;&quot; ]; then
         SAAS_SERVICE_NAME=$SAAS_SERVICE_NAME&quot;-&quot;$SUBDIR
     fi
@@ -1389,7 +1397,9 @@ else
     PATH=$PATH:~/.local/bin/
     CONTEXT=$(echo $SAAS_GIT | sed 's/.*://')
     SAAS_GIT=$(echo $SAAS_GIT | sed 's/:.*//')
-    SAAS_SERVICE_NAME=$GIT_REPO
+    if [[ -z &quot;$SAAS_SERVICE_NAME&quot; || &quot;$SAAS_SERVICE_NAME&quot; == &quot;none&quot; ]]; then
+        SAAS_SERVICE_NAME=$GIT_REPO
+    fi
     if [ &quot;$SUBDIR&quot; != &quot;&quot; ]; then
         SAAS_SERVICE_NAME=$SAAS_SERVICE_NAME&quot;-&quot;$SUBDIR
     fi
@@ -1559,7 +1569,9 @@ else
     PATH=$PATH:~/.local/bin/
     CONTEXT=$(echo $SAAS_GIT | sed 's/.*://')
     SAAS_GIT=$(echo $SAAS_GIT | sed 's/:.*//')
-    SAAS_SERVICE_NAME=$GIT_REPO
+    if [[ -z &quot;$SAAS_SERVICE_NAME&quot; || &quot;$SAAS_SERVICE_NAME&quot; == &quot;none&quot; ]]; then
+        SAAS_SERVICE_NAME=$GIT_REPO
+    fi
     if [ &quot;$SUBDIR&quot; != &quot;&quot; ]; then
         SAAS_SERVICE_NAME=$SAAS_SERVICE_NAME&quot;-&quot;$SUBDIR
     fi
@@ -1729,7 +1741,9 @@ else
     PATH=$PATH:~/.local/bin/
     CONTEXT=$(echo $SAAS_GIT | sed 's/.*://')
     SAAS_GIT=$(echo $SAAS_GIT | sed 's/:.*//')
-    SAAS_SERVICE_NAME=$GIT_REPO
+    if [[ -z &quot;$SAAS_SERVICE_NAME&quot; || &quot;$SAAS_SERVICE_NAME&quot; == &quot;none&quot; ]]; then
+        SAAS_SERVICE_NAME=$GIT_REPO
+    fi
     if [ &quot;$SUBDIR&quot; != &quot;&quot; ]; then
         SAAS_SERVICE_NAME=$SAAS_SERVICE_NAME&quot;-&quot;$SUBDIR
     fi
@@ -2319,12 +2333,15 @@ SVC_NAME=none
 GIT_REPO=che-starter
 PRJ_NAME=dsaas-preview
 SAAS_GIT=saas-openshiftio
+SAAS_SERVICE_NAME=none
 if [ &quot;$SAAS_GIT&quot; != &quot;none&quot; ]; then
     SAAS_ENV=staging
     PATH=$PATH:~/.local/bin/
     CONTEXT=$(echo $SAAS_GIT | sed 's/.*://')
     SAAS_GIT=$(echo $SAAS_GIT | sed 's/:.*//')
-    SAAS_SERVICE_NAME=$GIT_REPO
+    if [[ -z &quot;$SAAS_SERVICE_NAME&quot; || &quot;$SAAS_SERVICE_NAME&quot; == &quot;none&quot; ]]; then
+        SAAS_SERVICE_NAME=$GIT_REPO
+    fi
     if [ &quot;$SUBDIR&quot; != &quot;&quot; ]; then
         SAAS_SERVICE_NAME=$SAAS_SERVICE_NAME&quot;-&quot;$SUBDIR
     fi
@@ -2723,7 +2740,9 @@ else
     PATH=$PATH:~/.local/bin/
     CONTEXT=$(echo $SAAS_GIT | sed 's/.*://')
     SAAS_GIT=$(echo $SAAS_GIT | sed 's/:.*//')
-    SAAS_SERVICE_NAME=$GIT_REPO
+    if [[ -z &quot;$SAAS_SERVICE_NAME&quot; || &quot;$SAAS_SERVICE_NAME&quot; == &quot;none&quot; ]]; then
+        SAAS_SERVICE_NAME=$GIT_REPO
+    fi
     if [ &quot;$SUBDIR&quot; != &quot;&quot; ]; then
         SAAS_SERVICE_NAME=$SAAS_SERVICE_NAME&quot;-&quot;$SUBDIR
     fi
@@ -3490,7 +3509,9 @@ else
     PATH=$PATH:~/.local/bin/
     CONTEXT=$(echo $SAAS_GIT | sed 's/.*://')
     SAAS_GIT=$(echo $SAAS_GIT | sed 's/:.*//')
-    SAAS_SERVICE_NAME=$GIT_REPO
+    if [[ -z &quot;$SAAS_SERVICE_NAME&quot; || &quot;$SAAS_SERVICE_NAME&quot; == &quot;none&quot; ]]; then
+        SAAS_SERVICE_NAME=$GIT_REPO
+    fi
     if [ &quot;$SUBDIR&quot; != &quot;&quot; ]; then
         SAAS_SERVICE_NAME=$SAAS_SERVICE_NAME&quot;-&quot;$SUBDIR
     fi
@@ -4273,7 +4294,9 @@ if [ &quot;$SAAS_GIT&quot; != &quot;none&quot; ]; then
     PATH=$PATH:~/.local/bin/
     CONTEXT=$(echo $SAAS_GIT | sed 's/.*://')
     SAAS_GIT=$(echo $SAAS_GIT | sed 's/:.*//')
-    SAAS_SERVICE_NAME=$GIT_REPO
+    if [[ -z &quot;$SAAS_SERVICE_NAME&quot; || &quot;$SAAS_SERVICE_NAME&quot; == &quot;none&quot; ]]; then
+        SAAS_SERVICE_NAME=$GIT_REPO
+    fi
     if [ &quot;$SUBDIR&quot; != &quot;&quot; ]; then
         SAAS_SERVICE_NAME=$SAAS_SERVICE_NAME&quot;-&quot;$SUBDIR
     fi
@@ -5290,7 +5313,9 @@ else
     PATH=$PATH:~/.local/bin/
     CONTEXT=$(echo $SAAS_GIT | sed 's/.*://')
     SAAS_GIT=$(echo $SAAS_GIT | sed 's/:.*//')
-    SAAS_SERVICE_NAME=$GIT_REPO
+    if [[ -z &quot;$SAAS_SERVICE_NAME&quot; || &quot;$SAAS_SERVICE_NAME&quot; == &quot;none&quot; ]]; then
+        SAAS_SERVICE_NAME=$GIT_REPO
+    fi
     if [ &quot;$SUBDIR&quot; != &quot;&quot; ]; then
         SAAS_SERVICE_NAME=$SAAS_SERVICE_NAME&quot;-&quot;$SUBDIR
     fi
@@ -13241,7 +13266,9 @@ else
     PATH=$PATH:~/.local/bin/
     CONTEXT=$(echo $SAAS_GIT | sed 's/.*://')
     SAAS_GIT=$(echo $SAAS_GIT | sed 's/:.*//')
-    SAAS_SERVICE_NAME=$GIT_REPO
+    if [[ -z &quot;$SAAS_SERVICE_NAME&quot; || &quot;$SAAS_SERVICE_NAME&quot; == &quot;none&quot; ]]; then
+        SAAS_SERVICE_NAME=$GIT_REPO
+    fi
     if [ &quot;$SUBDIR&quot; != &quot;&quot; ]; then
         SAAS_SERVICE_NAME=$SAAS_SERVICE_NAME&quot;-&quot;$SUBDIR
     fi
@@ -14617,7 +14644,9 @@ else
     PATH=$PATH:~/.local/bin/
     CONTEXT=$(echo $SAAS_GIT | sed 's/.*://')
     SAAS_GIT=$(echo $SAAS_GIT | sed 's/:.*//')
-    SAAS_SERVICE_NAME=$GIT_REPO
+    if [[ -z &quot;$SAAS_SERVICE_NAME&quot; || &quot;$SAAS_SERVICE_NAME&quot; == &quot;none&quot; ]]; then
+        SAAS_SERVICE_NAME=$GIT_REPO
+    fi
     if [ &quot;$SUBDIR&quot; != &quot;&quot; ]; then
         SAAS_SERVICE_NAME=$SAAS_SERVICE_NAME&quot;-&quot;$SUBDIR
     fi
@@ -14787,7 +14816,9 @@ else
     PATH=$PATH:~/.local/bin/
     CONTEXT=$(echo $SAAS_GIT | sed 's/.*://')
     SAAS_GIT=$(echo $SAAS_GIT | sed 's/:.*//')
-    SAAS_SERVICE_NAME=$GIT_REPO
+    if [[ -z &quot;$SAAS_SERVICE_NAME&quot; || &quot;$SAAS_SERVICE_NAME&quot; == &quot;none&quot; ]]; then
+        SAAS_SERVICE_NAME=$GIT_REPO
+    fi
     if [ &quot;$SUBDIR&quot; != &quot;&quot; ]; then
         SAAS_SERVICE_NAME=$SAAS_SERVICE_NAME&quot;-&quot;$SUBDIR
     fi
@@ -15902,7 +15933,9 @@ else
     PATH=$PATH:~/.local/bin/
     CONTEXT=$(echo $SAAS_GIT | sed 's/.*://')
     SAAS_GIT=$(echo $SAAS_GIT | sed 's/:.*//')
-    SAAS_SERVICE_NAME=$GIT_REPO
+    if [[ -z &quot;$SAAS_SERVICE_NAME&quot; || &quot;$SAAS_SERVICE_NAME&quot; == &quot;none&quot; ]]; then
+        SAAS_SERVICE_NAME=$GIT_REPO
+    fi
     if [ &quot;$SUBDIR&quot; != &quot;&quot; ]; then
         SAAS_SERVICE_NAME=$SAAS_SERVICE_NAME&quot;-&quot;$SUBDIR
     fi
@@ -16280,7 +16313,9 @@ else
     PATH=$PATH:~/.local/bin/
     CONTEXT=$(echo $SAAS_GIT | sed 's/.*://')
     SAAS_GIT=$(echo $SAAS_GIT | sed 's/:.*//')
-    SAAS_SERVICE_NAME=$GIT_REPO
+    if [[ -z &quot;$SAAS_SERVICE_NAME&quot; || &quot;$SAAS_SERVICE_NAME&quot; == &quot;none&quot; ]]; then
+        SAAS_SERVICE_NAME=$GIT_REPO
+    fi
     if [ &quot;$SUBDIR&quot; != &quot;&quot; ]; then
         SAAS_SERVICE_NAME=$SAAS_SERVICE_NAME&quot;-&quot;$SUBDIR
     fi
@@ -16658,7 +16693,9 @@ else
     PATH=$PATH:~/.local/bin/
     CONTEXT=$(echo $SAAS_GIT | sed 's/.*://')
     SAAS_GIT=$(echo $SAAS_GIT | sed 's/:.*//')
-    SAAS_SERVICE_NAME=$GIT_REPO
+    if [[ -z &quot;$SAAS_SERVICE_NAME&quot; || &quot;$SAAS_SERVICE_NAME&quot; == &quot;none&quot; ]]; then
+        SAAS_SERVICE_NAME=$GIT_REPO
+    fi
     if [ &quot;$SUBDIR&quot; != &quot;&quot; ]; then
         SAAS_SERVICE_NAME=$SAAS_SERVICE_NAME&quot;-&quot;$SUBDIR
     fi
@@ -16828,7 +16865,9 @@ else
     PATH=$PATH:~/.local/bin/
     CONTEXT=$(echo $SAAS_GIT | sed 's/.*://')
     SAAS_GIT=$(echo $SAAS_GIT | sed 's/:.*//')
-    SAAS_SERVICE_NAME=$GIT_REPO
+    if [[ -z &quot;$SAAS_SERVICE_NAME&quot; || &quot;$SAAS_SERVICE_NAME&quot; == &quot;none&quot; ]]; then
+        SAAS_SERVICE_NAME=$GIT_REPO
+    fi
     if [ &quot;$SUBDIR&quot; != &quot;&quot; ]; then
         SAAS_SERVICE_NAME=$SAAS_SERVICE_NAME&quot;-&quot;$SUBDIR
     fi
@@ -17206,7 +17245,9 @@ else
     PATH=$PATH:~/.local/bin/
     CONTEXT=$(echo $SAAS_GIT | sed 's/.*://')
     SAAS_GIT=$(echo $SAAS_GIT | sed 's/:.*//')
-    SAAS_SERVICE_NAME=$GIT_REPO
+    if [[ -z &quot;$SAAS_SERVICE_NAME&quot; || &quot;$SAAS_SERVICE_NAME&quot; == &quot;none&quot; ]]; then
+        SAAS_SERVICE_NAME=$GIT_REPO
+    fi
     if [ &quot;$SUBDIR&quot; != &quot;&quot; ]; then
         SAAS_SERVICE_NAME=$SAAS_SERVICE_NAME&quot;-&quot;$SUBDIR
     fi
@@ -18011,7 +18052,9 @@ else
     PATH=$PATH:~/.local/bin/
     CONTEXT=$(echo $SAAS_GIT | sed 's/.*://')
     SAAS_GIT=$(echo $SAAS_GIT | sed 's/:.*//')
-    SAAS_SERVICE_NAME=$GIT_REPO
+    if [[ -z &quot;$SAAS_SERVICE_NAME&quot; || &quot;$SAAS_SERVICE_NAME&quot; == &quot;none&quot; ]]; then
+        SAAS_SERVICE_NAME=$GIT_REPO
+    fi
     if [ &quot;$SUBDIR&quot; != &quot;&quot; ]; then
         SAAS_SERVICE_NAME=$SAAS_SERVICE_NAME&quot;-&quot;$SUBDIR
     fi
@@ -18181,7 +18224,9 @@ else
     PATH=$PATH:~/.local/bin/
     CONTEXT=$(echo $SAAS_GIT | sed 's/.*://')
     SAAS_GIT=$(echo $SAAS_GIT | sed 's/:.*//')
-    SAAS_SERVICE_NAME=$GIT_REPO
+    if [[ -z &quot;$SAAS_SERVICE_NAME&quot; || &quot;$SAAS_SERVICE_NAME&quot; == &quot;none&quot; ]]; then
+        SAAS_SERVICE_NAME=$GIT_REPO
+    fi
     if [ &quot;$SUBDIR&quot; != &quot;&quot; ]; then
         SAAS_SERVICE_NAME=$SAAS_SERVICE_NAME&quot;-&quot;$SUBDIR
     fi
@@ -18351,7 +18396,9 @@ else
     PATH=$PATH:~/.local/bin/
     CONTEXT=$(echo $SAAS_GIT | sed 's/.*://')
     SAAS_GIT=$(echo $SAAS_GIT | sed 's/:.*//')
-    SAAS_SERVICE_NAME=$GIT_REPO
+    if [[ -z &quot;$SAAS_SERVICE_NAME&quot; || &quot;$SAAS_SERVICE_NAME&quot; == &quot;none&quot; ]]; then
+        SAAS_SERVICE_NAME=$GIT_REPO
+    fi
     if [ &quot;$SUBDIR&quot; != &quot;&quot; ]; then
         SAAS_SERVICE_NAME=$SAAS_SERVICE_NAME&quot;-&quot;$SUBDIR
     fi
@@ -18729,7 +18776,9 @@ else
     PATH=$PATH:~/.local/bin/
     CONTEXT=$(echo $SAAS_GIT | sed 's/.*://')
     SAAS_GIT=$(echo $SAAS_GIT | sed 's/:.*//')
-    SAAS_SERVICE_NAME=$GIT_REPO
+    if [[ -z &quot;$SAAS_SERVICE_NAME&quot; || &quot;$SAAS_SERVICE_NAME&quot; == &quot;none&quot; ]]; then
+        SAAS_SERVICE_NAME=$GIT_REPO
+    fi
     if [ &quot;$SUBDIR&quot; != &quot;&quot; ]; then
         SAAS_SERVICE_NAME=$SAAS_SERVICE_NAME&quot;-&quot;$SUBDIR
     fi
@@ -19107,7 +19156,9 @@ else
     PATH=$PATH:~/.local/bin/
     CONTEXT=$(echo $SAAS_GIT | sed 's/.*://')
     SAAS_GIT=$(echo $SAAS_GIT | sed 's/:.*//')
-    SAAS_SERVICE_NAME=$GIT_REPO
+    if [[ -z &quot;$SAAS_SERVICE_NAME&quot; || &quot;$SAAS_SERVICE_NAME&quot; == &quot;none&quot; ]]; then
+        SAAS_SERVICE_NAME=$GIT_REPO
+    fi
     if [ &quot;$SUBDIR&quot; != &quot;&quot; ]; then
         SAAS_SERVICE_NAME=$SAAS_SERVICE_NAME&quot;-&quot;$SUBDIR
     fi
@@ -19498,7 +19549,9 @@ else
     PATH=$PATH:~/.local/bin/
     CONTEXT=$(echo $SAAS_GIT | sed 's/.*://')
     SAAS_GIT=$(echo $SAAS_GIT | sed 's/:.*//')
-    SAAS_SERVICE_NAME=$GIT_REPO
+    if [[ -z &quot;$SAAS_SERVICE_NAME&quot; || &quot;$SAAS_SERVICE_NAME&quot; == &quot;none&quot; ]]; then
+        SAAS_SERVICE_NAME=$GIT_REPO
+    fi
     if [ &quot;$SUBDIR&quot; != &quot;&quot; ]; then
         SAAS_SERVICE_NAME=$SAAS_SERVICE_NAME&quot;-&quot;$SUBDIR
     fi
@@ -19884,7 +19937,9 @@ else
     PATH=$PATH:~/.local/bin/
     CONTEXT=$(echo $SAAS_GIT | sed 's/.*://')
     SAAS_GIT=$(echo $SAAS_GIT | sed 's/:.*//')
-    SAAS_SERVICE_NAME=$GIT_REPO
+    if [[ -z &quot;$SAAS_SERVICE_NAME&quot; || &quot;$SAAS_SERVICE_NAME&quot; == &quot;none&quot; ]]; then
+        SAAS_SERVICE_NAME=$GIT_REPO
+    fi
     if [ &quot;$SUBDIR&quot; != &quot;&quot; ]; then
         SAAS_SERVICE_NAME=$SAAS_SERVICE_NAME&quot;-&quot;$SUBDIR
     fi
@@ -20054,7 +20109,9 @@ else
     PATH=$PATH:~/.local/bin/
     CONTEXT=$(echo $SAAS_GIT | sed 's/.*://')
     SAAS_GIT=$(echo $SAAS_GIT | sed 's/:.*//')
-    SAAS_SERVICE_NAME=$GIT_REPO
+    if [[ -z &quot;$SAAS_SERVICE_NAME&quot; || &quot;$SAAS_SERVICE_NAME&quot; == &quot;none&quot; ]]; then
+        SAAS_SERVICE_NAME=$GIT_REPO
+    fi
     if [ &quot;$SUBDIR&quot; != &quot;&quot; ]; then
         SAAS_SERVICE_NAME=$SAAS_SERVICE_NAME&quot;-&quot;$SUBDIR
     fi
@@ -21137,7 +21194,9 @@ else
     PATH=$PATH:~/.local/bin/
     CONTEXT=$(echo $SAAS_GIT | sed 's/.*://')
     SAAS_GIT=$(echo $SAAS_GIT | sed 's/:.*//')
-    SAAS_SERVICE_NAME=$GIT_REPO
+    if [[ -z &quot;$SAAS_SERVICE_NAME&quot; || &quot;$SAAS_SERVICE_NAME&quot; == &quot;none&quot; ]]; then
+        SAAS_SERVICE_NAME=$GIT_REPO
+    fi
     if [ &quot;$SUBDIR&quot; != &quot;&quot; ]; then
         SAAS_SERVICE_NAME=$SAAS_SERVICE_NAME&quot;-&quot;$SUBDIR
     fi
@@ -21515,7 +21574,9 @@ else
     PATH=$PATH:~/.local/bin/
     CONTEXT=$(echo $SAAS_GIT | sed 's/.*://')
     SAAS_GIT=$(echo $SAAS_GIT | sed 's/:.*//')
-    SAAS_SERVICE_NAME=$GIT_REPO
+    if [[ -z &quot;$SAAS_SERVICE_NAME&quot; || &quot;$SAAS_SERVICE_NAME&quot; == &quot;none&quot; ]]; then
+        SAAS_SERVICE_NAME=$GIT_REPO
+    fi
     if [ &quot;$SUBDIR&quot; != &quot;&quot; ]; then
         SAAS_SERVICE_NAME=$SAAS_SERVICE_NAME&quot;-&quot;$SUBDIR
     fi
@@ -22105,7 +22166,9 @@ else
     PATH=$PATH:~/.local/bin/
     CONTEXT=$(echo $SAAS_GIT | sed 's/.*://')
     SAAS_GIT=$(echo $SAAS_GIT | sed 's/:.*//')
-    SAAS_SERVICE_NAME=$GIT_REPO
+    if [[ -z &quot;$SAAS_SERVICE_NAME&quot; || &quot;$SAAS_SERVICE_NAME&quot; == &quot;none&quot; ]]; then
+        SAAS_SERVICE_NAME=$GIT_REPO
+    fi
     if [ &quot;$SUBDIR&quot; != &quot;&quot; ]; then
         SAAS_SERVICE_NAME=$SAAS_SERVICE_NAME&quot;-&quot;$SUBDIR
     fi
@@ -22487,7 +22550,9 @@ else
     PATH=$PATH:~/.local/bin/
     CONTEXT=$(echo $SAAS_GIT | sed 's/.*://')
     SAAS_GIT=$(echo $SAAS_GIT | sed 's/:.*//')
-    SAAS_SERVICE_NAME=$GIT_REPO
+    if [[ -z &quot;$SAAS_SERVICE_NAME&quot; || &quot;$SAAS_SERVICE_NAME&quot; == &quot;none&quot; ]]; then
+        SAAS_SERVICE_NAME=$GIT_REPO
+    fi
     if [ &quot;$SUBDIR&quot; != &quot;&quot; ]; then
         SAAS_SERVICE_NAME=$SAAS_SERVICE_NAME&quot;-&quot;$SUBDIR
     fi
@@ -22661,7 +22726,9 @@ else
     PATH=$PATH:~/.local/bin/
     CONTEXT=$(echo $SAAS_GIT | sed 's/.*://')
     SAAS_GIT=$(echo $SAAS_GIT | sed 's/:.*//')
-    SAAS_SERVICE_NAME=$GIT_REPO
+    if [[ -z &quot;$SAAS_SERVICE_NAME&quot; || &quot;$SAAS_SERVICE_NAME&quot; == &quot;none&quot; ]]; then
+        SAAS_SERVICE_NAME=$GIT_REPO
+    fi
     if [ &quot;$SUBDIR&quot; != &quot;&quot; ]; then
         SAAS_SERVICE_NAME=$SAAS_SERVICE_NAME&quot;-&quot;$SUBDIR
     fi
@@ -23267,7 +23334,9 @@ else
     PATH=$PATH:~/.local/bin/
     CONTEXT=$(echo $SAAS_GIT | sed 's/.*://')
     SAAS_GIT=$(echo $SAAS_GIT | sed 's/:.*//')
-    SAAS_SERVICE_NAME=$GIT_REPO
+    if [[ -z &quot;$SAAS_SERVICE_NAME&quot; || &quot;$SAAS_SERVICE_NAME&quot; == &quot;none&quot; ]]; then
+        SAAS_SERVICE_NAME=$GIT_REPO
+    fi
     if [ &quot;$SUBDIR&quot; != &quot;&quot; ]; then
         SAAS_SERVICE_NAME=$SAAS_SERVICE_NAME&quot;-&quot;$SUBDIR
     fi
@@ -23666,7 +23735,9 @@ else
     PATH=$PATH:~/.local/bin/
     CONTEXT=$(echo $SAAS_GIT | sed 's/.*://')
     SAAS_GIT=$(echo $SAAS_GIT | sed 's/:.*//')
-    SAAS_SERVICE_NAME=$GIT_REPO
+    if [[ -z &quot;$SAAS_SERVICE_NAME&quot; || &quot;$SAAS_SERVICE_NAME&quot; == &quot;none&quot; ]]; then
+        SAAS_SERVICE_NAME=$GIT_REPO
+    fi
     if [ &quot;$SUBDIR&quot; != &quot;&quot; ]; then
         SAAS_SERVICE_NAME=$SAAS_SERVICE_NAME&quot;-&quot;$SUBDIR
     fi
@@ -24065,7 +24136,9 @@ else
     PATH=$PATH:~/.local/bin/
     CONTEXT=$(echo $SAAS_GIT | sed 's/.*://')
     SAAS_GIT=$(echo $SAAS_GIT | sed 's/:.*//')
-    SAAS_SERVICE_NAME=$GIT_REPO
+    if [[ -z &quot;$SAAS_SERVICE_NAME&quot; || &quot;$SAAS_SERVICE_NAME&quot; == &quot;none&quot; ]]; then
+        SAAS_SERVICE_NAME=$GIT_REPO
+    fi
     if [ &quot;$SUBDIR&quot; != &quot;&quot; ]; then
         SAAS_SERVICE_NAME=$SAAS_SERVICE_NAME&quot;-&quot;$SUBDIR
     fi
@@ -24464,7 +24537,9 @@ else
     PATH=$PATH:~/.local/bin/
     CONTEXT=$(echo $SAAS_GIT | sed 's/.*://')
     SAAS_GIT=$(echo $SAAS_GIT | sed 's/:.*//')
-    SAAS_SERVICE_NAME=$GIT_REPO
+    if [[ -z &quot;$SAAS_SERVICE_NAME&quot; || &quot;$SAAS_SERVICE_NAME&quot; == &quot;none&quot; ]]; then
+        SAAS_SERVICE_NAME=$GIT_REPO
+    fi
     if [ &quot;$SUBDIR&quot; != &quot;&quot; ]; then
         SAAS_SERVICE_NAME=$SAAS_SERVICE_NAME&quot;-&quot;$SUBDIR
     fi
@@ -24850,7 +24925,9 @@ else
     PATH=$PATH:~/.local/bin/
     CONTEXT=$(echo $SAAS_GIT | sed 's/.*://')
     SAAS_GIT=$(echo $SAAS_GIT | sed 's/:.*//')
-    SAAS_SERVICE_NAME=$GIT_REPO
+    if [[ -z &quot;$SAAS_SERVICE_NAME&quot; || &quot;$SAAS_SERVICE_NAME&quot; == &quot;none&quot; ]]; then
+        SAAS_SERVICE_NAME=$GIT_REPO
+    fi
     if [ &quot;$SUBDIR&quot; != &quot;&quot; ]; then
         SAAS_SERVICE_NAME=$SAAS_SERVICE_NAME&quot;-&quot;$SUBDIR
     fi
@@ -25171,7 +25248,9 @@ else
     PATH=$PATH:~/.local/bin/
     CONTEXT=$(echo $SAAS_GIT | sed 's/.*://')
     SAAS_GIT=$(echo $SAAS_GIT | sed 's/:.*//')
-    SAAS_SERVICE_NAME=$GIT_REPO
+    if [[ -z &quot;$SAAS_SERVICE_NAME&quot; || &quot;$SAAS_SERVICE_NAME&quot; == &quot;none&quot; ]]; then
+        SAAS_SERVICE_NAME=$GIT_REPO
+    fi
     if [ &quot;$SUBDIR&quot; != &quot;&quot; ]; then
         SAAS_SERVICE_NAME=$SAAS_SERVICE_NAME&quot;-&quot;$SUBDIR
     fi
@@ -25341,7 +25420,9 @@ else
     PATH=$PATH:~/.local/bin/
     CONTEXT=$(echo $SAAS_GIT | sed 's/.*://')
     SAAS_GIT=$(echo $SAAS_GIT | sed 's/:.*//')
-    SAAS_SERVICE_NAME=$GIT_REPO
+    if [[ -z &quot;$SAAS_SERVICE_NAME&quot; || &quot;$SAAS_SERVICE_NAME&quot; == &quot;none&quot; ]]; then
+        SAAS_SERVICE_NAME=$GIT_REPO
+    fi
     if [ &quot;$SUBDIR&quot; != &quot;&quot; ]; then
         SAAS_SERVICE_NAME=$SAAS_SERVICE_NAME&quot;-&quot;$SUBDIR
     fi
@@ -25511,7 +25592,9 @@ else
     PATH=$PATH:~/.local/bin/
     CONTEXT=$(echo $SAAS_GIT | sed 's/.*://')
     SAAS_GIT=$(echo $SAAS_GIT | sed 's/:.*//')
-    SAAS_SERVICE_NAME=$GIT_REPO
+    if [[ -z &quot;$SAAS_SERVICE_NAME&quot; || &quot;$SAAS_SERVICE_NAME&quot; == &quot;none&quot; ]]; then
+        SAAS_SERVICE_NAME=$GIT_REPO
+    fi
     if [ &quot;$SUBDIR&quot; != &quot;&quot; ]; then
         SAAS_SERVICE_NAME=$SAAS_SERVICE_NAME&quot;-&quot;$SUBDIR
     fi
@@ -25879,12 +25962,15 @@ SVC_NAME=none
 GIT_REPO=rh-che
 PRJ_NAME=dsaas-preview
 SAAS_GIT=saas-openshiftio
+SAAS_SERVICE_NAME=none
 if [ &quot;$SAAS_GIT&quot; != &quot;none&quot; ]; then
     SAAS_ENV=staging
     PATH=$PATH:~/.local/bin/
     CONTEXT=$(echo $SAAS_GIT | sed 's/.*://')
     SAAS_GIT=$(echo $SAAS_GIT | sed 's/:.*//')
-    SAAS_SERVICE_NAME=$GIT_REPO
+    if [[ -z &quot;$SAAS_SERVICE_NAME&quot; || &quot;$SAAS_SERVICE_NAME&quot; == &quot;none&quot; ]]; then
+        SAAS_SERVICE_NAME=$GIT_REPO
+    fi
     if [ &quot;$SUBDIR&quot; != &quot;&quot; ]; then
         SAAS_SERVICE_NAME=$SAAS_SERVICE_NAME&quot;-&quot;$SUBDIR
     fi
@@ -26056,12 +26142,15 @@ SVC_NAME=none
 GIT_REPO=rh-che
 PRJ_NAME=dsaas-preview
 SAAS_GIT=none
+SAAS_SERVICE_NAME=none
 if [ &quot;$SAAS_GIT&quot; != &quot;none&quot; ]; then
     SAAS_ENV=staging
     PATH=$PATH:~/.local/bin/
     CONTEXT=$(echo $SAAS_GIT | sed 's/.*://')
     SAAS_GIT=$(echo $SAAS_GIT | sed 's/:.*//')
-    SAAS_SERVICE_NAME=$GIT_REPO
+    if [[ -z &quot;$SAAS_SERVICE_NAME&quot; || &quot;$SAAS_SERVICE_NAME&quot; == &quot;none&quot; ]]; then
+        SAAS_SERVICE_NAME=$GIT_REPO
+    fi
     if [ &quot;$SUBDIR&quot; != &quot;&quot; ]; then
         SAAS_SERVICE_NAME=$SAAS_SERVICE_NAME&quot;-&quot;$SUBDIR
     fi
@@ -27694,7 +27783,9 @@ else
     PATH=$PATH:~/.local/bin/
     CONTEXT=$(echo $SAAS_GIT | sed 's/.*://')
     SAAS_GIT=$(echo $SAAS_GIT | sed 's/:.*//')
-    SAAS_SERVICE_NAME=$GIT_REPO
+    if [[ -z &quot;$SAAS_SERVICE_NAME&quot; || &quot;$SAAS_SERVICE_NAME&quot; == &quot;none&quot; ]]; then
+        SAAS_SERVICE_NAME=$GIT_REPO
+    fi
     if [ &quot;$SUBDIR&quot; != &quot;&quot; ]; then
         SAAS_SERVICE_NAME=$SAAS_SERVICE_NAME&quot;-&quot;$SUBDIR
     fi
@@ -27864,7 +27955,9 @@ else
     PATH=$PATH:~/.local/bin/
     CONTEXT=$(echo $SAAS_GIT | sed 's/.*://')
     SAAS_GIT=$(echo $SAAS_GIT | sed 's/:.*//')
-    SAAS_SERVICE_NAME=$GIT_REPO
+    if [[ -z &quot;$SAAS_SERVICE_NAME&quot; || &quot;$SAAS_SERVICE_NAME&quot; == &quot;none&quot; ]]; then
+        SAAS_SERVICE_NAME=$GIT_REPO
+    fi
     if [ &quot;$SUBDIR&quot; != &quot;&quot; ]; then
         SAAS_SERVICE_NAME=$SAAS_SERVICE_NAME&quot;-&quot;$SUBDIR
     fi
@@ -28661,7 +28754,9 @@ else
     PATH=$PATH:~/.local/bin/
     CONTEXT=$(echo $SAAS_GIT | sed 's/.*://')
     SAAS_GIT=$(echo $SAAS_GIT | sed 's/:.*//')
-    SAAS_SERVICE_NAME=$GIT_REPO
+    if [[ -z &quot;$SAAS_SERVICE_NAME&quot; || &quot;$SAAS_SERVICE_NAME&quot; == &quot;none&quot; ]]; then
+        SAAS_SERVICE_NAME=$GIT_REPO
+    fi
     if [ &quot;$SUBDIR&quot; != &quot;&quot; ]; then
         SAAS_SERVICE_NAME=$SAAS_SERVICE_NAME&quot;-&quot;$SUBDIR
     fi
@@ -34064,7 +34159,9 @@ else
     PATH=$PATH:~/.local/bin/
     CONTEXT=$(echo $SAAS_GIT | sed 's/.*://')
     SAAS_GIT=$(echo $SAAS_GIT | sed 's/:.*//')
-    SAAS_SERVICE_NAME=$GIT_REPO
+    if [[ -z &quot;$SAAS_SERVICE_NAME&quot; || &quot;$SAAS_SERVICE_NAME&quot; == &quot;none&quot; ]]; then
+        SAAS_SERVICE_NAME=$GIT_REPO
+    fi
     if [ &quot;$SUBDIR&quot; != &quot;&quot; ]; then
         SAAS_SERVICE_NAME=$SAAS_SERVICE_NAME&quot;-&quot;$SUBDIR
     fi
@@ -34128,3 +34225,4 @@ exit $rtn_code
       </bindings>
     </org.jenkinsci.plugins.credentialsbinding.impl.SecretBuildWrapper>
   </buildWrappers>
+</project>
