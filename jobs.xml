@@ -26047,6 +26047,186 @@ exit $rtn_code
     </org.jenkinsci.plugins.credentialsbinding.impl.SecretBuildWrapper>
   </buildWrappers>
 </project>
+INFO:jenkins_jobs.builder:Job name:  devtools-rh-che-build-che-credentials-rh-che6
+<?xml version="1.0" encoding="utf-8"?>
+<project>
+  <actions/>
+  <description>Managed by Jenkins Job Builder, do not edit manually! Update via https://github.com/almighty/almighty-jobs
+&lt;!-- Managed by Jenkins Job Builder --&gt;</description>
+  <keepDependencies>false</keepDependencies>
+  <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
+  <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+  <concurrentBuild>false</concurrentBuild>
+  <assignedNode>devtools</assignedNode>
+  <canRoam>false</canRoam>
+  <properties>
+    <com.coravy.hudson.plugins.github.GithubProjectProperty>
+      <projectUrl>https://github.com/redhat-developer/rh-che/</projectUrl>
+    </com.coravy.hudson.plugins.github.GithubProjectProperty>
+  </properties>
+  <scm class="hudson.plugins.git.GitSCM">
+    <configVersion>2</configVersion>
+    <userRemoteConfigs>
+      <hudson.plugins.git.UserRemoteConfig>
+        <name>origin</name>
+        <refspec>+refs/heads/*:refs/remotes/origin/*</refspec>
+        <url>https://github.com/redhat-developer/rh-che.git</url>
+      </hudson.plugins.git.UserRemoteConfig>
+    </userRemoteConfigs>
+    <branches>
+      <hudson.plugins.git.BranchSpec>
+        <name>rh-che6</name>
+      </hudson.plugins.git.BranchSpec>
+    </branches>
+    <excludedUsers/>
+    <buildChooser class="hudson.plugins.git.util.DefaultBuildChooser"/>
+    <disableSubmodules>false</disableSubmodules>
+    <recursiveSubmodules>false</recursiveSubmodules>
+    <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
+    <authorOrCommitter>false</authorOrCommitter>
+    <wipeOutWorkspace>true</wipeOutWorkspace>
+    <pruneBranches>false</pruneBranches>
+    <remotePoll>false</remotePoll>
+    <gitTool>Default</gitTool>
+    <submoduleCfg class="list"/>
+    <relativeTargetDir/>
+    <reference/>
+    <gitConfigName/>
+    <gitConfigEmail/>
+    <skipTag>false</skipTag>
+    <scmName/>
+    <useShallowClone>false</useShallowClone>
+    <ignoreNotifyCommit>false</ignoreNotifyCommit>
+    <extensions>
+      <hudson.plugins.git.extensions.impl.WipeWorkspace/>
+    </extensions>
+  </scm>
+  <triggers class="vector">
+    <com.cloudbees.jenkins.GitHubPushTrigger>
+      <spec/>
+    </com.cloudbees.jenkins.GitHubPushTrigger>
+  </triggers>
+  <builders>
+    <hudson.tasks.Shell>
+      <command># testing out the cico client
+set +e
+set +x
+export CICO_API_KEY=$(cat ~/duffy.key )
+# get node
+n=1
+while true
+do
+    cico_output=$(cico node get -f value -c ip_address -c comment)
+    if [ $? -eq 0 ]; then
+        read CICO_hostname CICO_ssid &lt;&lt;&lt; $cico_output
+        if  [ ! -z &quot;$CICO_hostname&quot; ]; then
+            # we got hostname from cico
+            break
+        fi
+        echo &quot;'cico node get' succeed, but can't get hostname from output&quot;
+    fi
+    if [ $n -gt 5 ]; then
+        # give up after 5 tries
+        echo &quot;giving up on 'cico node get'&quot;
+        exit 1
+    fi
+    echo &quot;'cico node get' failed, trying again in 60s ($n/5)&quot;
+    n=$[$n+1]
+    sleep 60
+done
+echo 'Using Host' $CICO_hostname
+set -x
+
+#Prepare values for deployment
+SVC_NAME=none
+GIT_REPO=rh-che
+PRJ_NAME=dsaas-preview
+SAAS_GIT=saas-openshiftio
+SAAS_SERVICE_NAME=rh-che6
+if [ &quot;$SAAS_GIT&quot; != &quot;none&quot; ]; then
+    SAAS_ENV=staging
+    PATH=$PATH:~/.local/bin/
+    CONTEXT=$(echo $SAAS_GIT | sed 's/.*://')
+    SAAS_GIT=$(echo $SAAS_GIT | sed 's/:.*//')
+    if [[ -z &quot;$SAAS_SERVICE_NAME&quot; || &quot;$SAAS_SERVICE_NAME&quot; == &quot;none&quot; ]]; then
+        SAAS_SERVICE_NAME=$GIT_REPO
+    fi
+    if [ &quot;$SUBDIR&quot; != &quot;&quot; ]; then
+        SAAS_SERVICE_NAME=$SAAS_SERVICE_NAME&quot;-&quot;$SUBDIR
+    fi
+    git clone --depth 1 https://github.com/openshiftio/$SAAS_GIT saas.git
+    cd saas.git
+    [ &quot;$CONTEXT&quot; != &quot;$SAAS_GIT&quot; ] &amp;&amp; saasherder --context $CONTEXT config get-contexts &gt; /dev/null
+    export DEVSHIFT_TAG_LEN=$(saasherder --environment $SAAS_ENV get hash_length $SAAS_SERVICE_NAME)
+    cd ..
+fi
+
+
+if [ -z &quot;$DEVSHIFT_TAG_LEN&quot; ]; then
+    export DEVSHIFT_TAG_LEN=7
+fi
+env &gt; jenkins-env
+cat $creds_config_file &gt;&gt; jenkins-env
+
+sshopts=&quot;-t -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -l root&quot;
+ssh_cmd=&quot;ssh $sshopts $CICO_hostname&quot;
+$ssh_cmd yum -y install rsync
+rsync -e &quot;ssh $sshopts&quot; -Ha $(pwd)/ $CICO_hostname:payload
+$ssh_cmd -t &quot;cd payload &amp;&amp; /bin/bash .ci/cico_build.sh &amp;&amp; /bin/bash .ci/cico_deploy.sh&quot;
+rtn_code=$?
+if [ $rtn_code -eq 0 ]; then
+    #Deploy preview
+    if [ &quot;$SVC_NAME&quot; != &quot;none&quot; ]; then
+    oc deploy $SVC_NAME --latest -n $PRJ_NAME
+    rtn_code=$?
+fi
+if [ &quot;$SAAS_GIT&quot; != &quot;none&quot; ]; then
+    cd saas.git
+    saasherder --environment $SAAS_ENV update hash $SAAS_SERVICE_NAME $GIT_COMMIT
+    saasherder --environment $SAAS_ENV pull $SAAS_SERVICE_NAME
+    saasherder --environment $SAAS_ENV template --filter Route --output-dir $GIT_REPO-processed tag $SAAS_SERVICE_NAME
+    oc apply -f $GIT_REPO-processed/$SAAS_SERVICE_NAME.yaml -n $PRJ_NAME
+    rtn_code=$?
+    cd ..
+fi
+
+fi
+cico node done $CICO_ssid
+exit $rtn_code
+</command>
+    </hudson.tasks.Shell>
+  </builders>
+  <publishers/>
+  <buildWrappers>
+    <org.jenkinsci.plugins.credentialsbinding.impl.SecretBuildWrapper>
+      <bindings>
+        <org.jenkinsci.plugins.credentialsbinding.impl.UsernamePasswordMultiBinding>
+          <usernameVariable>RHCHEBOT_DOCKER_HUB_USERNAME</usernameVariable>
+          <passwordVariable>RHCHEBOT_DOCKER_HUB_PASSWORD</passwordVariable>
+          <credentialsId>b2ae0d9a-307a-4df3-b027-9aa0c22e29dd</credentialsId>
+        </org.jenkinsci.plugins.credentialsbinding.impl.UsernamePasswordMultiBinding>
+        <org.jenkinsci.plugins.credentialsbinding.impl.FileBinding>
+          <variable>creds_config_file</variable>
+          <credentialsId>93da78ec-7785-49ab-a1ef-586424b3e94f</credentialsId>
+        </org.jenkinsci.plugins.credentialsbinding.impl.FileBinding>
+        <org.jenkinsci.plugins.credentialsbinding.impl.UsernamePasswordMultiBinding>
+          <usernameVariable>DEVSHIFT_USERNAME</usernameVariable>
+          <passwordVariable>DEVSHIFT_PASSWORD</passwordVariable>
+          <credentialsId>1e87842e-7bb7-42f3-aad0-9431acb55c01</credentialsId>
+        </org.jenkinsci.plugins.credentialsbinding.impl.UsernamePasswordMultiBinding>
+        <org.jenkinsci.plugins.credentialsbinding.impl.StringBinding>
+          <variable>KEYCLOAK_TOKEN</variable>
+          <credentialsId>1e0bbb30-cddd-4b6f-bc61-bb4ebd2706e5</credentialsId>
+        </org.jenkinsci.plugins.credentialsbinding.impl.StringBinding>
+        <org.jenkinsci.plugins.credentialsbinding.impl.UsernamePasswordMultiBinding>
+          <usernameVariable>OSIO_USERNAME</usernameVariable>
+          <passwordVariable>OSIO_PASSWORD</passwordVariable>
+          <credentialsId>ac51aeb0-a436-4a50-a71d-aa6f99075398</credentialsId>
+        </org.jenkinsci.plugins.credentialsbinding.impl.UsernamePasswordMultiBinding>
+      </bindings>
+    </org.jenkinsci.plugins.credentialsbinding.impl.SecretBuildWrapper>
+  </buildWrappers>
+</project>
 INFO:jenkins_jobs.builder:Job name:  devtools-rh-che-build-che-credentials-single-user-rh-che
 <?xml version="1.0" encoding="utf-8"?>
 <project>
